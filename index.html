@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulado - Engenharia de Software e Linguagens Formais</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:linear-gradient(135deg,#1d1428,#31204a,#151a30);color:#f4ecff;padding:20px}
+.container{max-width:920px;margin:0 auto} .header{text-align:center;padding:34px 12px 20px}
+h1{font-size:2.2rem;margin:0 0 8px;background:linear-gradient(45deg,#f093fb,#f5576c,#fda085);-webkit-background-clip:text;color:transparent}
+.subtitle{color:#d8c7ff;margin:0} .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.badge{border:1px solid rgba(240,147,251,.35);background:rgba(240,147,251,.14);color:#f7b6ff;border-radius:999px;padding:5px 12px;font-size:.82rem;font-weight:700}
+.student{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;margin:18px 0}
+.student label{display:block;color:#fda085;font-weight:700;margin-bottom:7px} input[type=text]{width:100%;padding:11px 13px;border-radius:8px;border:1px solid rgba(240,147,251,.35);background:rgba(0,0,0,.28);color:#fff;font-size:1rem}
+.progress{height:7px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin:16px 0 5px} .fill{height:100%;width:0;background:linear-gradient(90deg,#f093fb,#f5576c);transition:.25s}
+.plabel{text-align:right;color:#cbbcff;font-size:.8rem;margin-bottom:18px}
+.q-card{background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.09);border-left:4px solid #f093fb;border-radius:12px;padding:22px;margin:16px 0}
+.q-card.disc{border-left-color:#fda085} .q-num{font-size:.78rem;text-transform:uppercase;letter-spacing:.9px;color:#cbbcff;margin-bottom:9px} .q-text{line-height:1.55;margin-bottom:15px}
+.opts{display:flex;flex-direction:column;gap:8px} .opt{display:flex;gap:10px;align-items:flex-start;background:rgba(0,0,0,.20);border:1px solid transparent;border-radius:8px;padding:11px;cursor:pointer}
+.opt:hover,.opt.selected{border-color:rgba(240,147,251,.55);background:rgba(240,147,251,.09)} input[type=radio]{accent-color:#f093fb;margin-top:3px}
+textarea{width:100%;min-height:105px;resize:vertical;border-radius:8px;border:1px solid rgba(253,160,133,.45);background:rgba(0,0,0,.32);color:#fff;padding:12px;font:inherit;line-height:1.45}
+.hint{font-size:.8rem;color:#cabaff;margin:8px 0 0} .actions{text-align:center;padding:26px 0} button{border:0;border-radius:999px;background:linear-gradient(45deg,#f093fb,#f5576c);color:white;font-weight:800;padding:14px 42px;font-size:1rem;cursor:pointer}
+#results{display:none;margin:20px 0 40px} .score{text-align:center;font-size:2.4rem;font-weight:900;color:#fda085} .r{background:rgba(255,255,255,.06);border-radius:10px;padding:13px 15px;margin:10px 0;border-left:4px solid #ff8a80} .r.ok{border-left-color:#80ffb4} .small{color:#d8c7ff;font-size:.9rem}
+@media print{body{background:white;color:#111} .student,.actions,.progress,.plabel{display:none} .q-card{break-inside:avoid;border:1px solid #ccc;color:#111} h1{color:#111;background:none} .subtitle,.q-num,.small{color:#333} textarea{border:1px solid #999;color:#111}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <h1>Simulado Integrado</h1>
+    <p class="subtitle">Reúso de Software • Engenharia de Requisitos • Gestão de Projetos de TI • Linguagens Formais • Qualidade de Software</p>
+    <div class="badges"><span class="badge">20 objetivas</span><span class="badge">10 discursivas</span><span class="badge">Baseado nos PDFs</span></div>
+  </header>
+  <div class="student"><label for="student">Nome do aluno</label><input id="student" type="text" placeholder="Digite o nome completo"></div>
+  <div class="progress"><div class="fill" id="fill"></div></div><div class="plabel" id="plabel">0 de 30 respondidas</div>
+  <form id="quiz"><section class="q-card" data-type="mc" data-answer="1" data-exp="O reuso reduz esforço e custo ao reaproveitar artefatos já existentes, desde bibliotecas até padrões, frameworks e componentes.">
+  <div class="q-num">Questão 01 • Reuso de software</div>
+  <div class="q-text">No desenvolvimento orientado a reuso, qual é a ideia central da reutilização de software?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q1" value="0"><span><b>A)</b> Reescrever o sistema a cada novo projeto para evitar dependências externas.</span></label>
+<label class="opt"><input type="radio" name="q1" value="1"><span><b>B)</b> Empregar partes de sistemas existentes, como bibliotecas, padrões ou componentes, na criação de novos projetos.</span></label>
+<label class="opt"><input type="radio" name="q1" value="2"><span><b>C)</b> Substituir todas as atividades de análise por programação direta.</span></label>
+<label class="opt"><input type="radio" name="q1" value="3"><span><b>D)</b> Manter apenas o código-fonte antigo, sem adaptação ao novo contexto.</span></label>
+<label class="opt"><input type="radio" name="q1" value="4"><span><b>E)</b> Evitar documentação para acelerar a codificação.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="2" data-exp="O planejamento do reuso depende de requisitos, plataforma, ativos disponíveis, criticidade, tempo de vida previsto e habilidades da equipe.">
+  <div class="q-num">Questão 02 • Reuso de software</div>
+  <div class="q-text">Segundo o material, qual fator deve ser analisado antes de escolher uma abordagem de reuso?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q2" value="0"><span><b>A)</b> A cor da interface do sistema.</span></label>
+<label class="opt"><input type="radio" name="q2" value="1"><span><b>B)</b> A quantidade de reuniões semanais da equipe comercial.</span></label>
+<label class="opt"><input type="radio" name="q2" value="2"><span><b>C)</b> Requisitos do sistema, tecnologia disponível, ativos reutilizáveis e experiência da equipe.</span></label>
+<label class="opt"><input type="radio" name="q2" value="3"><span><b>D)</b> A preferência pessoal do cliente por uma linguagem específica, sem considerar requisitos.</span></label>
+<label class="opt"><input type="radio" name="q2" value="4"><span><b>E)</b> A existência de um único programador responsável por todo o projeto.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="Bibliotecas fornecem funcionalidades prontas, como coleções e operações comuns, poupando a reinvenção de soluções já conhecidas.">
+  <div class="q-num">Questão 03 • Reuso de software</div>
+  <div class="q-text">Em relação às bibliotecas de programas, qual alternativa está de acordo com o livro?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q3" value="0"><span><b>A)</b> Bibliotecas são coleções de funcionalidades prontas que podem ser incorporadas ao projeto.</span></label>
+<label class="opt"><input type="radio" name="q3" value="1"><span><b>B)</b> Bibliotecas sempre substituem a necessidade de análise de requisitos.</span></label>
+<label class="opt"><input type="radio" name="q3" value="2"><span><b>C)</b> Bibliotecas só podem ser usadas em sistemas de código aberto.</span></label>
+<label class="opt"><input type="radio" name="q3" value="3"><span><b>D)</b> Bibliotecas impedem a manutenção do software.</span></label>
+<label class="opt"><input type="radio" name="q3" value="4"><span><b>E)</b> Bibliotecas são equivalentes a bancos de dados relacionais.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="1" data-exp="O Adapter converte a interface de uma classe em outra esperada pelo cliente, permitindo colaboração entre classes incompatíveis.">
+  <div class="q-num">Questão 04 • Reuso de software</div>
+  <div class="q-text">O padrão de projeto Adapter é apropriado quando:</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q4" value="0"><span><b>A)</b> a equipe deseja eliminar todos os testes automatizados.</span></label>
+<label class="opt"><input type="radio" name="q4" value="1"><span><b>B)</b> uma classe existente possui interface incompatível com a interface esperada pelo cliente.</span></label>
+<label class="opt"><input type="radio" name="q4" value="2"><span><b>C)</b> um requisito ainda não foi aprovado pelo usuário.</span></label>
+<label class="opt"><input type="radio" name="q4" value="3"><span><b>D)</b> o sistema deve armazenar apenas dados temporários.</span></label>
+<label class="opt"><input type="radio" name="q4" value="4"><span><b>E)</b> não há necessidade de integração entre componentes.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="A rastreabilidade bidirecional permite acompanhar a origem do requisito e seus desdobramentos em artefatos, código, casos de teste e mudanças.">
+  <div class="q-num">Questão 05 • Engenharia de requisitos</div>
+  <div class="q-text">Qual é a finalidade da rastreabilidade bidirecional de requisitos?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q5" value="0"><span><b>A)</b> Permitir rastrear requisitos para trás e para frente, relacionando origem, implementação, testes e impactos.</span></label>
+<label class="opt"><input type="radio" name="q5" value="1"><span><b>B)</b> Eliminar mudanças de requisitos durante todo o projeto.</span></label>
+<label class="opt"><input type="radio" name="q5" value="2"><span><b>C)</b> Substituir entrevistas por documentação técnica.</span></label>
+<label class="opt"><input type="radio" name="q5" value="3"><span><b>D)</b> Guardar apenas os requisitos não funcionais.</span></label>
+<label class="opt"><input type="radio" name="q5" value="4"><span><b>E)</b> Impedir que stakeholders participem da validação.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="2" data-exp="Mudanças podem afetar diversos artefatos e decisões do projeto; por isso precisam ser avaliadas, registradas e rastreadas.">
+  <div class="q-num">Questão 06 • Engenharia de requisitos</div>
+  <div class="q-text">Qual situação representa uma consequência possível de mudanças mal gerenciadas nos requisitos?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q6" value="0"><span><b>A)</b> Melhoria automática da qualidade sem retrabalho.</span></label>
+<label class="opt"><input type="radio" name="q6" value="1"><span><b>B)</b> Redução garantida do custo e do cronograma.</span></label>
+<label class="opt"><input type="radio" name="q6" value="2"><span><b>C)</b> Impactos em escopo, arquitetura, testes, custos e satisfação do usuário.</span></label>
+<label class="opt"><input type="radio" name="q6" value="3"><span><b>D)</b> Fim da necessidade de documentação.</span></label>
+<label class="opt"><input type="radio" name="q6" value="4"><span><b>E)</b> Eliminação da comunicação com stakeholders.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="1" data-exp="A matriz usa marcações para evidenciar vínculos entre requisitos e outros elementos rastreáveis, como casos de uso, testes e módulos.">
+  <div class="q-num">Questão 07 • Engenharia de requisitos</div>
+  <div class="q-text">Na matriz de rastreabilidade, o que normalmente uma marcação como &#x27;X&#x27; indica?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q7" value="0"><span><b>A)</b> Que o requisito foi excluído do projeto.</span></label>
+<label class="opt"><input type="radio" name="q7" value="1"><span><b>B)</b> Que existe relacionamento entre os elementos correspondentes da linha e da coluna.</span></label>
+<label class="opt"><input type="radio" name="q7" value="2"><span><b>C)</b> Que o elemento ainda não foi analisado.</span></label>
+<label class="opt"><input type="radio" name="q7" value="3"><span><b>D)</b> Que o teste falhou obrigatoriamente.</span></label>
+<label class="opt"><input type="radio" name="q7" value="4"><span><b>E)</b> Que o requisito não possui stakeholder associado.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="2" data-exp="O material recomenda rastrear elementos cujo impacto seja relevante, como fontes, requisitos críticos, código crítico e testes críticos.">
+  <div class="q-num">Questão 08 • Engenharia de requisitos</div>
+  <div class="q-text">Qual alternativa contém exemplos de itens candidatos à rastreabilidade citados no material?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q8" value="0"><span><b>A)</b> Apenas logotipo e paleta de cores.</span></label>
+<label class="opt"><input type="radio" name="q8" value="1"><span><b>B)</b> Somente nomes dos programadores.</span></label>
+<label class="opt"><input type="radio" name="q8" value="2"><span><b>C)</b> Fonte de informação, requisitos críticos, requisitos sujeitos a mudança, código crítico e casos de teste críticos.</span></label>
+<label class="opt"><input type="radio" name="q8" value="3"><span><b>D)</b> Somente contratos de fornecedores externos.</span></label>
+<label class="opt"><input type="radio" name="q8" value="4"><span><b>E)</b> Apenas mensagens de erro exibidas ao usuário.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="Lições aprendidas transformam experiências do projeto em conhecimento organizacional reutilizável.">
+  <div class="q-num">Questão 09 • Gestão de projetos de TI</div>
+  <div class="q-text">Qual é o papel das lições aprendidas na gestão de projetos?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q9" value="0"><span><b>A)</b> Registrar experiências para apoiar projetos futuros, melhorar processos e evitar repetição de erros.</span></label>
+<label class="opt"><input type="radio" name="q9" value="1"><span><b>B)</b> Substituir o encerramento formal do projeto.</span></label>
+<label class="opt"><input type="radio" name="q9" value="2"><span><b>C)</b> Guardar somente falhas individuais dos membros da equipe.</span></label>
+<label class="opt"><input type="radio" name="q9" value="3"><span><b>D)</b> Ser produzidas apenas quando o projeto fracassa.</span></label>
+<label class="opt"><input type="radio" name="q9" value="4"><span><b>E)</b> Eliminar a necessidade de base de conhecimento.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="O processo sistemático permite capturar, organizar e disponibilizar conhecimento durante e após o projeto.">
+  <div class="q-num">Questão 10 • Gestão de projetos de TI</div>
+  <div class="q-text">Segundo o PMBOK citado no material, o processo de lições aprendidas envolve atividades como:</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q10" value="0"><span><b>A)</b> identificar, documentar, analisar, armazenar e recuperar.</span></label>
+<label class="opt"><input type="radio" name="q10" value="1"><span><b>B)</b> codificar, compilar, executar e depurar.</span></label>
+<label class="opt"><input type="radio" name="q10" value="2"><span><b>C)</b> comprar, vender, faturar e auditar.</span></label>
+<label class="opt"><input type="radio" name="q10" value="3"><span><b>D)</b> desenhar telas, escolher cores e publicar anúncios.</span></label>
+<label class="opt"><input type="radio" name="q10" value="4"><span><b>E)</b> apagar documentos antigos e recomeçar o projeto.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="1" data-exp="O material valoriza registros ao longo do projeto, inclusive em métodos ágeis, para aproveitar o aprendizado enquanto ele ainda é útil.">
+  <div class="q-num">Questão 11 • Gestão de projetos de TI</div>
+  <div class="q-text">Por que não é recomendado deixar as lições aprendidas apenas para o encerramento do projeto?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q11" value="0"><span><b>A)</b> Porque o encerramento nunca ocorre em projetos de TI.</span></label>
+<label class="opt"><input type="radio" name="q11" value="1"><span><b>B)</b> Porque informações importantes podem ser esquecidas e oportunidades de melhoria durante o projeto podem ser perdidas.</span></label>
+<label class="opt"><input type="radio" name="q11" value="2"><span><b>C)</b> Porque lições aprendidas só servem para auditoria financeira.</span></label>
+<label class="opt"><input type="radio" name="q11" value="3"><span><b>D)</b> Porque a equipe não deve participar do registro.</span></label>
+<label class="opt"><input type="radio" name="q11" value="4"><span><b>E)</b> Porque o cliente deve ser o único responsável pelo relatório.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="1" data-exp="Retrospectivas buscam identificar o que funcionou, o que pode melhorar e quais ações devem orientar o próximo ciclo.">
+  <div class="q-num">Questão 12 • Gestão de projetos de TI</div>
+  <div class="q-text">Em uma retrospectiva de sprint, qual pergunta combina com a coleta de lições aprendidas?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q12" value="0"><span><b>A)</b> Qual linguagem de programação será proibida na empresa?</span></label>
+<label class="opt"><input type="radio" name="q12" value="1"><span><b>B)</b> O que ocorreu bem e deve continuar sendo feito?</span></label>
+<label class="opt"><input type="radio" name="q12" value="2"><span><b>C)</b> Qual colaborador deve ser responsabilizado publicamente?</span></label>
+<label class="opt"><input type="radio" name="q12" value="3"><span><b>D)</b> Como eliminar toda documentação do projeto?</span></label>
+<label class="opt"><input type="radio" name="q12" value="4"><span><b>E)</b> Quais requisitos podem ser ignorados na próxima entrega?</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="A análise léxica reconhece lexemas e os classifica em tokens, descartando elementos como espaços em branco quando apropriado.">
+  <div class="q-num">Questão 13 • Linguagens formais e automatos</div>
+  <div class="q-text">No processo de tradução feito por um compilador, qual fase normalmente transforma fluxo de caracteres em tokens?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q13" value="0"><span><b>A)</b> Análise léxica.</span></label>
+<label class="opt"><input type="radio" name="q13" value="1"><span><b>B)</b> Otimização de código.</span></label>
+<label class="opt"><input type="radio" name="q13" value="2"><span><b>C)</b> Geração de código de máquina.</span></label>
+<label class="opt"><input type="radio" name="q13" value="3"><span><b>D)</b> Análise semântica.</span></label>
+<label class="opt"><input type="radio" name="q13" value="4"><span><b>E)</b> Ligação dinâmica.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="O analisador sintático usa a gramática para validar a estrutura da sentença e construir uma representação como árvore sintática.">
+  <div class="q-num">Questão 14 • Linguagens formais e automatos</div>
+  <div class="q-text">Qual é o papel principal da análise sintática?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q14" value="0"><span><b>A)</b> Verificar se a sequência de tokens obedece à gramática da linguagem.</span></label>
+<label class="opt"><input type="radio" name="q14" value="1"><span><b>B)</b> Converter todo o programa diretamente em código executável.</span></label>
+<label class="opt"><input type="radio" name="q14" value="2"><span><b>C)</b> Escolher automaticamente o sistema operacional.</span></label>
+<label class="opt"><input type="radio" name="q14" value="3"><span><b>D)</b> Armazenar usuários em uma tabela de símbolos.</span></label>
+<label class="opt"><input type="radio" name="q14" value="4"><span><b>E)</b> Definir o orçamento do projeto.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="Lex/Flex geram analisadores léxicos a partir de regras que associam padrões a ações.">
+  <div class="q-num">Questão 15 • Linguagens formais e automatos</div>
+  <div class="q-text">Em ferramentas como Lex/Flex, expressões regulares são usadas principalmente para:</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q15" value="0"><span><b>A)</b> definir padrões de tokens a serem reconhecidos pelo analisador léxico.</span></label>
+<label class="opt"><input type="radio" name="q15" value="1"><span><b>B)</b> gerar planos de teste de aceitação.</span></label>
+<label class="opt"><input type="radio" name="q15" value="2"><span><b>C)</b> calcular cronogramas de projeto.</span></label>
+<label class="opt"><input type="radio" name="q15" value="3"><span><b>D)</b> substituir a gramática sintática inteira por diagramas UML.</span></label>
+<label class="opt"><input type="radio" name="q15" value="4"><span><b>E)</b> criar matrizes de rastreabilidade.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="O material apresenta o arquivo Bison dividido em três seções separadas por linhas com %%.">
+  <div class="q-num">Questão 16 • Linguagens formais e automatos</div>
+  <div class="q-text">Em um arquivo Bison, o símbolo %% é usado para:</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q16" value="0"><span><b>A)</b> separar seções do arquivo, como declarações, regras e código C.</span></label>
+<label class="opt"><input type="radio" name="q16" value="1"><span><b>B)</b> indicar comentário de linha única.</span></label>
+<label class="opt"><input type="radio" name="q16" value="2"><span><b>C)</b> representar uma variável inteira.</span></label>
+<label class="opt"><input type="radio" name="q16" value="3"><span><b>D)</b> executar automaticamente a calculadora.</span></label>
+<label class="opt"><input type="radio" name="q16" value="4"><span><b>E)</b> declarar um requisito funcional.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="Revisões examinam software, documentos e registros para detectar problemas e melhorar qualidade.">
+  <div class="q-num">Questão 17 • Qualidade de software</div>
+  <div class="q-text">Qual é o objetivo geral de uma revisão de software?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q17" value="0"><span><b>A)</b> Encontrar erros, inconsistências e oportunidades de melhoria em artefatos do processo de software.</span></label>
+<label class="opt"><input type="radio" name="q17" value="1"><span><b>B)</b> Substituir todos os testes de sistema.</span></label>
+<label class="opt"><input type="radio" name="q17" value="2"><span><b>C)</b> Impedir a participação de usuários no projeto.</span></label>
+<label class="opt"><input type="radio" name="q17" value="3"><span><b>D)</b> Aprovar automaticamente qualquer documento criado.</span></label>
+<label class="opt"><input type="radio" name="q17" value="4"><span><b>E)</b> Reduzir a documentação a zero.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="1" data-exp="A revisão formal segue fases e papéis, buscando maior controle e eficácia na identificação de defeitos.">
+  <div class="q-num">Questão 18 • Qualidade de software</div>
+  <div class="q-text">Qual alternativa descreve uma revisão formal?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q18" value="0"><span><b>A)</b> Atividade casual, sem planejamento e sem registro.</span></label>
+<label class="opt"><input type="radio" name="q18" value="1"><span><b>B)</b> Processo estruturado, controlado e com etapas definidas, como planejamento, kick-off, preparação, reunião e acompanhamento.</span></label>
+<label class="opt"><input type="radio" name="q18" value="2"><span><b>C)</b> Reunião improvisada de dois colegas sem documentação.</span></label>
+<label class="opt"><input type="radio" name="q18" value="3"><span><b>D)</b> Teste automático executado sem leitura humana.</span></label>
+<label class="opt"><input type="radio" name="q18" value="4"><span><b>E)</b> Apenas uma apresentação comercial do produto.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="1" data-exp="Revisões informais são menos estruturadas, mas úteis para feedback rápido e melhoria contínua.">
+  <div class="q-num">Questão 19 • Qualidade de software</div>
+  <div class="q-text">Qual característica combina com revisão informal?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q19" value="0"><span><b>A)</b> Exige sempre comitê formal, atas e critérios rígidos.</span></label>
+<label class="opt"><input type="radio" name="q19" value="1"><span><b>B)</b> É mais casual e pode ocorrer como desk-checks, programação em pares ou troca de feedbacks.</span></label>
+<label class="opt"><input type="radio" name="q19" value="2"><span><b>C)</b> Só pode ser realizada após a entrega final.</span></label>
+<label class="opt"><input type="radio" name="q19" value="3"><span><b>D)</b> Nunca envolve o autor do artefato.</span></label>
+<label class="opt"><input type="radio" name="q19" value="4"><span><b>E)</b> Dispensa qualquer comunicação entre os membros da equipe.</span></label></div>
+</section><section class="q-card" data-type="mc" data-answer="0" data-exp="A técnica usa amostras e estimativas para concentrar esforço nos documentos mais críticos ou com maior risco de falhas.">
+  <div class="q-num">Questão 20 • Qualidade de software</div>
+  <div class="q-text">Na revisão por amostragem, qual é a lógica principal?</div>
+  <div class="opts"><label class="opt"><input type="radio" name="q20" value="0"><span><b>A)</b> Inspecionar uma amostra representativa para estimar qualidade e priorizar documentos com maior estimativa de falhas.</span></label>
+<label class="opt"><input type="radio" name="q20" value="1"><span><b>B)</b> Revisar somente documentos escolhidos por ordem alfabética.</span></label>
+<label class="opt"><input type="radio" name="q20" value="2"><span><b>C)</b> Eliminar documentos pequenos da análise.</span></label>
+<label class="opt"><input type="radio" name="q20" value="3"><span><b>D)</b> Inspecionar sempre 100% de todos os artefatos.</span></label>
+<label class="opt"><input type="radio" name="q20" value="4"><span><b>E)</b> Substituir revisão técnica por votação da equipe.</span></label></div>
+</section><section class="q-card disc" data-type="disc" data-req="criticidade,seguranca,certificacao,codigo-fonte,desempenho" data-exp="Sistemas críticos podem exigir avaliações, certificações, acesso ao código-fonte e desempenho previsível; componentes reutilizados inadequados podem aumentar riscos.">
+  <div class="q-num">Questão 21 • Reuso de software</div>
+  <div class="q-text">Explique por que a criticidade do software pode limitar o uso de determinadas abordagens de reuso.</div>
+  <textarea name="q21" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="interface,incompativel,adaptar,classe,cliente" data-exp="Um Adapter é útil quando uma classe já existente tem interface diferente da esperada; ele adapta a chamada sem alterar diretamente o componente original.">
+  <div class="q-num">Questão 22 • Reuso de software</div>
+  <div class="q-text">Descreva uma situação em que o padrão Adapter ajudaria a integrar componentes de um sistema.</div>
+  <textarea name="q22" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="origem,stakeholder,implementacao,teste,impacto" data-exp="Para trás identifica a origem do requisito; para frente acompanha seus desdobramentos em design, código e testes.">
+  <div class="q-num">Questão 23 • Engenharia de requisitos</div>
+  <div class="q-text">Explique a diferença entre rastreabilidade para trás e rastreabilidade para frente usando um exemplo simples.</div>
+  <textarea name="q23" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="impacto,artefatos,testes,codigo,custo" data-exp="Ela ajuda a identificar artefatos afetados, testes relacionados, módulos de código, responsáveis e possíveis impactos em custo e prazo.">
+  <div class="q-num">Questão 24 • Engenharia de requisitos</div>
+  <div class="q-text">Em uma mudança de requisito, quais perguntas uma matriz de rastreabilidade ajuda a responder?</div>
+  <textarea name="q24" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="experiencias,erros,melhores praticas,armazenar,recuperar" data-exp="A base organiza experiências, erros e práticas bem-sucedidas para consulta por novas equipes, evitando repetir problemas conhecidos.">
+  <div class="q-num">Questão 25 • Gestao de projetos de TI</div>
+  <div class="q-text">Explique como uma base de conhecimento de lições aprendidas pode evitar retrabalho em projetos futuros.</div>
+  <textarea name="q25" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="escopo,risco,sucesso,aprendeu,melhorar" data-exp="Boas perguntas abordam metas de escopo, riscos, critérios de sucesso, aprendizados e ações que poderiam ser diferentes.">
+  <div class="q-num">Questão 26 • Gestao de projetos de TI</div>
+  <div class="q-text">Proponha três perguntas para um relatório individual de lições aprendidas ao final de um projeto.</div>
+  <textarea name="q26" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="lexema,token,atributo,identificador,numero" data-exp="Lexema é a sequência reconhecida; token é sua categoria; atributo guarda informação complementar, como valor numérico ou referência na tabela de símbolos.">
+  <div class="q-num">Questão 27 • Linguagens formais e automatos</div>
+  <div class="q-text">Diferencie lexema, token e valor de atributo no contexto da análise léxica.</div>
+  <textarea name="q27" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="tokens,gramatica,ordem,estrutura,sentenca" data-exp="Os tokens podem ser válidos isoladamente, mas estarem em ordem ou estrutura incompatível com a gramática da linguagem.">
+  <div class="q-num">Questão 28 • Linguagens formais e automatos</div>
+  <div class="q-text">Explique por que uma sentença pode passar pela análise léxica e falhar na análise sintática.</div>
+  <textarea name="q28" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="formal,informal,planejamento,papeis,registro" data-exp="A formal é planejada, estruturada e registrada; a informal é mais flexível, com menor controle, mas útil para feedback rápido.">
+  <div class="q-num">Questão 29 • Qualidade de software</div>
+  <div class="q-text">Compare revisão formal e revisão informal quanto a planejamento, papéis e registro dos resultados.</div>
+  <textarea name="q29" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><section class="q-card disc" data-type="disc" data-req="defeitos,inicio,custo,retrabalho,qualidade" data-exp="Defeitos encontrados cedo exigem menos retrabalho do que aqueles descobertos após implementação ou entrega.">
+  <div class="q-num">Questão 30 • Qualidade de software</div>
+  <div class="q-text">Explique por que detectar defeitos em revisões iniciais pode reduzir custos no desenvolvimento.</div>
+  <textarea name="q30" placeholder="Digite sua resposta..."></textarea>
+  <p class="hint">Correção automática parcial por palavras-chave. O professor pode revisar a resposta final.</p>
+</section><div class="actions"><button type="button" onclick="corrigir()">Finalizar simulado</button></div></form>
+  <section id="results"></section>
+</div>
+<script>
+const total = 30;
+document.querySelectorAll('input[type=radio]').forEach(r => r.addEventListener('change', e => { e.target.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected')); e.target.closest('.opt').classList.add('selected'); updateProgress(); }));
+document.querySelectorAll('textarea').forEach(t => t.addEventListener('input', updateProgress));
+function updateProgress(){
+  let answered=0;
+  document.querySelectorAll('.q-card').forEach((card,i)=>{ if(card.dataset.type==='mc'){ if(document.querySelector(`input[name=q${i+1}]:checked`)) answered++; } else { if(card.querySelector('textarea').value.trim().length>10) answered++; } });
+  document.getElementById('fill').style.width = (answered/total*100)+'%';
+  document.getElementById('plabel').textContent = `${answered} de ${total} respondidas`;
+}
+function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function escapeHtml(s){
+  return String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function corrigir(){
+  let score=0, max=0, rows=[];
+  document.querySelectorAll('.q-card').forEach((card,i)=>{
+    const n=i+1; max++;
+    const pergunta = card.querySelector('.q-text').textContent.trim();
+    const tema = card.querySelector('.q-num').textContent.split('•')[1]?.trim() || '';
+    if(card.dataset.type==='mc'){
+      const chosen=document.querySelector(`input[name=q${n}]:checked`);
+      const ok=chosen && Number(chosen.value)===Number(card.dataset.answer);
+      if(ok) score++;
+      const marcada = chosen ? String.fromCharCode(65+Number(chosen.value)) : 'Não respondida';
+      const gabarito = String.fromCharCode(65+Number(card.dataset.answer));
+      rows.push(`<section class="r ${ok?'ok':''}">
+        <h3>Questão ${String(n).padStart(2,'0')} <span>${escapeHtml(tema)}</span></h3>
+        <p><strong>Enunciado:</strong> ${escapeHtml(pergunta)}</p>
+        <p><strong>Resposta marcada:</strong> ${escapeHtml(marcada)} | <strong>Gabarito:</strong> ${gabarito} | <strong>Status:</strong> ${ok?'Correta':'Incorreta ou não respondida'}</p>
+        <p class="small"><strong>Feedback:</strong> ${escapeHtml(card.dataset.exp)}</p>
+      </section>`);
+    } else {
+      const originalTxt=card.querySelector('textarea').value.trim();
+      const txt=norm(originalTxt);
+      const req=card.dataset.req.split(',');
+      const hits=req.filter(k=>txt.includes(norm(k))).length;
+      const ok=hits>=2;
+      if(ok) score++;
+      rows.push(`<section class="r ${ok?'ok':''}">
+        <h3>Questão ${String(n).padStart(2,'0')} <span>${escapeHtml(tema)}</span></h3>
+        <p><strong>Enunciado:</strong> ${escapeHtml(pergunta)}</p>
+        <p><strong>Status automático:</strong> ${ok?'Resposta com indícios suficientes':'Revisar manualmente'} (${hits} palavra(s)-chave encontrada(s)).</p>
+        <p><strong>Resposta do aluno:</strong></p>
+        <div class="answer">${escapeHtml(originalTxt || 'Não respondida')}</div>
+        <p class="small"><strong>Referência esperada:</strong> ${escapeHtml(card.dataset.exp)}</p>
+      </section>`);
+    }
+  });
+  const pct=Math.round(score/max*100);
+  const name=document.getElementById('student').value.trim() || 'Aluno';
+  const now = new Date().toLocaleString('pt-BR');
+  const report = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback para AVA - ${escapeHtml(name)}</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f3f4f6;color:#111827;line-height:1.45}
+.toolbar{position:sticky;top:0;background:#111827;color:white;padding:12px 20px;display:flex;gap:10px;align-items:center;justify-content:space-between;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.toolbar p{margin:0;font-size:.9rem;color:#d1d5db} button{border:0;border-radius:8px;background:#f97316;color:white;font-weight:700;padding:10px 16px;cursor:pointer}
+.wrap{max-width:900px;margin:24px auto;background:white;padding:34px;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.10)}
+.bottom-actions{max-width:900px;margin:0 auto 32px;text-align:center}
+.bottom-actions button{font-size:16px;padding:13px 24px}
+.editable{outline:2px dashed transparent} .editable:focus{outline-color:#f97316}
+h1{margin:0 0 8px;text-align:center;font-size:24px} .meta{border:1px solid #d1d5db;border-radius:8px;padding:14px;margin:18px 0;background:#f9fafb}
+.score{font-size:30px;font-weight:800;text-align:center;color:#c2410c;margin:18px 0} .note{font-size:13px;color:#4b5563;text-align:center}
+.r{border:1px solid #d1d5db;border-left:5px solid #dc2626;border-radius:8px;padding:14px 16px;margin:14px 0;break-inside:avoid}
+.r.ok{border-left-color:#16a34a} h3{margin:0 0 8px;font-size:17px} h3 span{font-size:12px;color:#6b7280;font-weight:400;margin-left:8px}
+.small{color:#374151;font-size:13px} .answer{white-space:pre-wrap;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:10px;margin-top:4px}
+@media print{body{background:white} .toolbar,.bottom-actions{display:none} .wrap{box-shadow:none;margin:0;max-width:none;border-radius:0;padding:18px} .editable{outline:none}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <p>Revise/edite o relatório antes de gerar o PDF para entrega no AVA.</p>
+  <button onclick="window.print()">Gerar PDF para o AVA</button>
+</div>
+<main class="wrap editable" contenteditable="true">
+  <h1>Feedback do Simulado Integrado</h1>
+  <div class="meta">
+    <p><strong>Aluno:</strong> ${escapeHtml(name)}</p>
+    <p><strong>Data/Hora:</strong> ${escapeHtml(now)}</p>
+    <p><strong>Conteúdos:</strong> Reúso de Software; Engenharia de Requisitos; Gestão de Projetos de TI; Linguagens Formais e Autômatos; Qualidade de Software.</p>
+  </div>
+  <div class="score">${score}/${max} (${pct}%)</div>
+  <p class="note">As questões discursivas usam correção automática parcial por palavras-chave e podem ser revisadas pelo professor antes da nota final.</p>
+  ${rows.join('')}
+</main>
+<div class="bottom-actions">
+  <button onclick="window.print()">Gerar PDF para o AVA</button>
+</div>
+</body>
+</html>`;
+  const w = window.open('', '_blank');
+  if(!w){
+    alert('O navegador bloqueou a nova aba. Libere pop-ups para este site e clique em Finalizar simulado novamente.');
+    return;
+  }
+  w.document.open();
+  w.document.write(report);
+  w.document.close();
+}
+</script>
+</body>
+</html>
