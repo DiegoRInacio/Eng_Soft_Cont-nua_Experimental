@@ -2,3 +2,11 @@
 !.gitignore
 !index.html
 !README.md
+!P1/
+!P1/simulado.html
+!P1/figuras/
+!P1/figuras/**
+!P2/
+!P2/simulado.html
+!P2/figuras/
+!P2/figuras/**
